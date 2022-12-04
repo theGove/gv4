@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">    <title>National Day of Service</title>  
+    <script src="code.js"></script>  
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="start_me_up()">
+    <div>
+    <img id="towers" src="images/towers.png">
+    </div>
+    <table><tr><td>
+        <div id="therm">  
+            <div id="tube-border"></div>            
+            <div id="bulb-border"></div>
+            <div id="tube"></div>            
+            <div id="bulb"></div>
+        </div>
+
+        </td><td>
+            <div id="header">
+                <span style="font-size:32pt">We invite you to join the 2022</span><br>
+                9/11 National Day of Service<br>      
+                and Rememberance 
+            </div>    
+            <div id="text">
+            Our service this week helps keep the promise to "Never Forget" and honor those killed and injured on 9/11, along with the brave first responders, recovery workers, volunteers, and members of our military who rose to serve in response to the September 11, 2001 attacks.<br><br><span style="color:darkred;font-weight: bold;">The Poway Stake is dedicated to giving at least 911 hours of service by 9/11/2022.</span><br><br>
+            So far, we have recorded <span id="hours-recorded" style="color: red; padding:3px; font-size: larger; font-weight: bold;">_</span> hours.  Here are some <a href="https://docs.google.com/document/d/1vcuHpaGU4by_oQORxeXu1yYSZSZHqfdc/edit" target="_blank">ideas of how to serve</a>.
+            <h2>Record your Service Here</h2>
+            
+                <div id="form-div">
+                    <form id="form">
+                        <table>
+                            <tr>
+                                <td>Date of Service</td>
+                                <td><input type="date" id="date"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td id="v-date" class="valid"></td>
+                            </tr>
+                            <tr>
+                                <td>Description<br>of Service</td>
+                                <td><textarea  id="desc" cols="40" rows="4"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td id="v-desc" class="valid"></td>
+                            </tr>
+                            <tr>
+                                <td># of People</td>
+                                <td><input type="number" style="width:90px" id="peeps" onchange="tot_hours()"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td id="v-peeps" class="valid"></td>
+                            </tr>
+                            <tr>
+                                <td>Total  Hours</td>
+                                <td><input type="number" style="width:90px" id="hours" onchange="tot_hours()"><span style="color:grey"> Be sure to click "Submit" below</span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td id="v-hours" class="valid"></td>
+                            </tr>
+                            <tr>
+                                <td>Documentation</td>
+                                <td><input style="transform: scale(2);" type="checkbox" id="photos">&nbsp; I have video or photos to share<br>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Full Name</td>
+                                <td><input id="name" placeholder="Optional"> </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td><input id="email" placeholder="Optional"> </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td id="v-email" class="valid"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><button type="button" style="padding:10px;font-size:25px;" onclick="submit_form()">Submit</button> <span id="thanx"></span></td>
+                            </tr>
+
+                    </form>
+                </div>
+            </div>   
+        </td></tr></table>
+
+</body>
+</html>
