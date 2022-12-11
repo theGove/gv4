@@ -1,0 +1,47 @@
+
+
+.therm-container{
+    display:inline-block;
+    text-align: center;
+}
+
+.therm{
+    display:inline-block;
+    position: relative;
+}
+.bulb{
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    top:400px;
+    left:2;
+}
+.tube{
+    background-color: red;
+    position: absolute;
+    height: 304px;
+    width: 20px;
+    top:120px;
+    left:12px;
+}
+.bulb-border{
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    height: 44px;
+    width: 44px;
+    top:398px;
+    left:0;
+}
+.tube-border{
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    height: 400px;
+    width: 20px;
+    top:16px;
+    left:10px;
+    border: 2px solid black; 
+}
