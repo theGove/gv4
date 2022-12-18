@@ -18,14 +18,27 @@ const settings={
         html:"Stories",
         activityLabel:"# of stories recorded",
     },
+    extraction:{
+        html:"Name Extraction",
+        activityLabel:"# of names extracted",
+    },
     baptism:{
         html:"Baptism",
         activityLabel:"# of Baptisms completed",
     },
+    initiatory:{
+        html:"Initiatory",
+        activityLabel:"# of initiatory ordinances completed",
+    },
     endowment:{
         html:"Endowments",
         activityLabel:"# of endowments completed",
+    },
+    sealings:{
+        html:"Sealings",
+        activityLabel:"# of Sealing ordinances completed",
     }
+    
 }
 
 function start_me_up(){    
