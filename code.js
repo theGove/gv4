@@ -34,7 +34,7 @@ const settings={
         html:"Endowments",
         activityLabel:"# of endowments completed",
     },
-    sealings:{
+    sealing:{
         html:"Sealings",
         activityLabel:"# of Sealing ordinances completed",
     }
@@ -79,12 +79,12 @@ function submit_form(){
     }
 
 
-    if(tag("date").value){
-        tag("v-date").innerHTML=""
-    }else{    
-        tag("v-date").innerHTML="Date is required"
-        valid=false;
-    }
+    // if(tag("date").value){
+    //     tag("v-date").innerHTML=""
+    // }else{    
+    //     tag("v-date").innerHTML="Date is required"
+    //     valid=false;
+    // }
 
     if(tag("peeps").value){
           tag("v-peeps").innerHTML=""
