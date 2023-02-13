@@ -61,6 +61,7 @@ function set_temp(thermometer_name,degrees){
     const the_top=get_mercury(thermometer_name,degrees)
     tube.style.top = the_top
     tube.style.height = bulb_top-the_top+10*setting.factor
+    tag(thermometer_name + "-bulb").innerHTML=`<div class="bulb-label">${degrees}</div>`
 
 }
 
