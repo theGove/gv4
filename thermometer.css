@@ -17,6 +17,7 @@
     width: 40px;
     top:400px;
     left:2;
+    color:white
 }
 .tube{
     background-color: red;
@@ -44,4 +45,8 @@
     top:16px;
     left:10px;
     border: 2px solid black; 
+}
+.bulb-label{
+    padding-top: 1rem;
+    font-weight: bold;
 }
