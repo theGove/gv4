@@ -13,6 +13,8 @@ const settings={
         width: 120,
         backgroundColor:"white",    
         html:"Text goes here",
+        max:0,
+        degree_size:.5
     },
     story:{
         html:"Stories",
@@ -48,11 +50,11 @@ function start_me_up(){
             build_therm(key,"body")
         }
     }
-    
     const url="https://script.google.com/macros/s/AKfycbxzAAEXK35o9GvfhvgDxHoCVc9u4MMdv8j43jmBJINtEWqEt0yVrujdo8dukb7X-5sp/exec"
     fetch(url)
     .then((resp) => resp.json())
     .then((response)=>{
+        
         console.log("data",response.data)  
         for(const row of response.data){
             console.log(row)

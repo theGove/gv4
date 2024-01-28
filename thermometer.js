@@ -1,9 +1,9 @@
-let max = 0
-let degree_size = .5
+
+
 
 function build_therm(thermometer_name,container_id){
     const setting=get_settings(thermometer_name)
-    console.log("buuilding", thermometer_name, setting)
+    console.log("building", thermometer_name, setting)
     const container=tag(container_id)
     container.innerHTML+=`
     <div class="therm-container" style="width:${setting.container_width};background-color:${setting.backgroundColor}">
@@ -46,16 +46,21 @@ function get_settings(thermometer_name){
 function set_temp(thermometer_name,degrees){
     const setting=get_settings(thermometer_name)
     settings[thermometer_name].degrees=parseInt(degrees)
-    if(degrees > max){
+    console.log("===================================================")
+    console.log(thermometer_name, degrees > getMax(thermometer_name))
+    console.log("===================================================")
+    if(degrees > getMax(thermometer_name)){
         // rescale the thermometer
-        while(degrees > max){
-            max+=setting.increment
+        while(degrees > getMax(thermometer_name)){
+            setMax(thermometer_name,getMax(thermometer_name)+setting.increment)
         }
-        remove_numbers(thermometer_name)
-        add_numbers(thermometer_name,0,(max/setting.increment)+1)
-        add_goal(thermometer_name,911)
-    }
 
+        remove_numbers(thermometer_name)
+        add_numbers(thermometer_name,0,(getMax(thermometer_name)/setting.increment)+1)
+        
+        add_goal(thermometer_name,setting.goal_temp)
+    }
+//    if(thermometer_name==="initiatory"){debugger}
     const tube=tag(thermometer_name + "-tube")
     const bulb_top=tag(thermometer_name + "-bulb").style.top.split("px")[0]
     const the_top=get_mercury(thermometer_name,degrees)
@@ -69,16 +74,27 @@ function get_mercury(thermometer_name,degrees){
     const setting=get_settings(thermometer_name)
     console.log("getting mercury", thermometer_name)
     const tube=tag(thermometer_name + "-tube")
-    const percent = degrees/max
+    const percent = degrees/getMax(thermometer_name)
     const offset=18*setting.factor
     const tube_top = parseInt(tag(thermometer_name + "-tube-border").style.top.split("px")[0])
     //let bar_height = (((height-26 - (setting.head_space*setting.factor*.1))) * setting.factor * (percent))+(18*setting.factor )
-    //console.log("mercury degree_size",degree_size, "degrees",degrees)
-    const bar_height = degrees*degree_size+offset
+    const bar_height = degrees*getDegreeSize(thermometer_name)+offset
     return tube_top + ((setting.height*setting.factor)-bar_height)
 
 }
+function setMax(thermometer_name, max){
+    settings[thermometer_name].max = max
+}
+function getMax(thermometer_name){
+    return settings[thermometer_name].max
+}
 
+function setDegreeSize(thermometer_name, degree_size){
+    settings[thermometer_name].degree_size = degree_size
+}
+function getDegreeSize(thermometer_name){
+    return settings[thermometer_name].degree_size
+}
 
 function scale_thermometer(thermometer_name){
     console.log("scaling", thermometer_name, settings, settings[thermometer_name])
@@ -116,13 +132,13 @@ function scale_thermometer(thermometer_name){
 }
 function add_numbers(thermometer_name,first=0, count=11){
     const setting=get_settings(thermometer_name)
-    max=first+setting.increment*(count-1)
+    setMax(thermometer_name,first+setting.increment*(count-1))
     const tube_top=parseInt(tag(thermometer_name + "-tube-border").style.top.split("px")[0]) + setting.head_space * setting.factor
-    degree_size = .01
+    setDegreeSize(thermometer_name,.01)
 
     // figure out the degree size
     while(get_mercury(thermometer_name,first+setting.increment*(count-1))> tube_top + setting.head_space * setting.factor){
-         degree_size+=.01
+        setDegreeSize(thermometer_name,getDegreeSize(thermometer_name)+.01)
        //console.log("degree_size",degree_size)
      }
 
@@ -137,13 +153,16 @@ function add_numbers(thermometer_name,first=0, count=11){
 function remove_numbers(thermometer_name,){
     const nums=document.getElementsByClassName("number")
     for(let i=nums.length-1;i>=0;i--){
-        nums[i].remove()
+        if(nums[i].parentNode.id.split("-")[0] === thermometer_name){
+        
+          nums[i].remove()
+        }
     }
 }
 
 function add_number(thermometer_name,degrees){
     const setting=get_settings(thermometer_name)
-    const percent = degrees/max
+    const percent = degrees/getMax(thermometer_name)
   //console.log ("degrees",degrees)
   //console.log ("percent",percent)
     const new_div = document.createElement("div");
@@ -163,7 +182,8 @@ function add_number(thermometer_name,degrees){
 
 function add_goal(thermometer_name,degrees){
     const setting=get_settings(thermometer_name)
-    const percent = degrees/max
+    console.log("adding goal: ",thermometer_name,degrees, settings)
+    const percent = degrees/getMax(thermometer_name)
     const new_div = document.createElement("div");
     const text=document.createTextNode(degrees + "-")
     new_div.className = "number"
